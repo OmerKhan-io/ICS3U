@@ -30,36 +30,41 @@ print("The length of the inner diagonal of a cube with the side length of  %.f i
 
 #Part 3
  
-c = int(input("Please enter the amount of change in cents: ")) # Asks the user to input the amount of change in cents and converts it into an integer. 
-# The user input will be stored in the variable 'c'
+c = int(input("Please enter the amount of change in cents: "))  
 
-# Initializing variables for different coin denominations.
-q = 0 #Number of quarters (25 cents)
-d = 0 #Number of dimes (10 cents)
-n = 0 #Number of nickels (5 cents)
-p = 0 #Number of pennies (1 cent)
-change = 0 # variable to track the remaining change.
+q = c // 25  
+c %= 25  
 
-if c >= 100:
-   change = change % 100
+d = c // 10  
+c %= 10  
 
-if c >= 25:
-   q = c // 25
-   change = c % 25
-   print("Number of quarters %d: " % q, end = "")
+n = c // 5  
+c %= 5  
 
-if c >= 10:
-   d = c//10
-   change = c % 10
-   print("Number of dimes %d: " % d, end = "")
-  
-if c >= 5:
-   n = c//5
-   change = c%5
-   print("Number of nickels %d: " % n, end = "")
+p = c  
 
-if c >=1:
-  print("Number of pennies %d: " % n, end = "")
-   
+if q > 0:
+    if q == 1:
+        print(" Number of quarter %d: " % q, end = "")
+    else:
+        print(" Number of quarters: %d" % q, end = "")
+
+if d > 0:
+    if d == 1:
+        print(" Number of dime: %d" % d, end = "")
+    else:
+        print(" Number of dimes: %d" % d, end = "")
+
+if n > 0:
+    if n == 1:
+        print(" Number of nickel: %d" % n, end = "" )
+    else:
+        print(" Number of nickels: %d" % n, end = "")
+
+if p > 0:
+    if p == 1:
+        print(" Number of penny: %d" % p, end = "")
+    else:
+        print(" Number of pennies: %d" % p ,end = "")
 
    
