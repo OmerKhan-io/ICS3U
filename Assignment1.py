@@ -1,8 +1,10 @@
-print("Welcome to the even and odd detector!")
-num1 = int(input("Enter your first number"))
-num2 = int(input("Enter your second number"))
+print("Welcome to the even and odd detector!") # prints introductory statement
+num1 = int(input("Enter your first number")) # asks the user to input his first number. 
+#I used int to convert the input statement from a string to an integer.
+num2 = int(input("Enter your second number")) #asks the user to input his second number. 
+#I used int to convert the input statement from a string to an integer.
 
-if (num1 % 2 == 0 and num2 % 2 == 0):
+if (num1 % 2 == 0 and num2 % 2 == 0): #Checks if the num
   print("The product of both numbers are even")
 elif(num1 % 2 == 1 and num2 % 2 == 1):
   print("The product of both numbers are odd")
