@@ -1,5 +1,14 @@
-
-import random
+"""
+  Author : Omer Khan
+  Student Number : 753619
+  Revison date : 21 March 2025
+  Program : Even or Odd
+  Description : A program that determines whether the product of number is even or odd
+VARIABLE DICTIONARY
+  tries = the number of tries for the user
+  guess = the user input for the each guess
+"""
+import random 
 print("Hello! Welcome to the number guessing game!")
 print("I am thinking of a number between 1 and 100. It is your turn to guess what it is.")
 print("You have a maximum of six (6) tries.")
