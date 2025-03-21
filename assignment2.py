@@ -26,8 +26,8 @@ while tries < 6: #Stays in loop as long as tries is less than 6
     print("Lower!") # If guess is higher it will tell the user to guess lower
   elif guess < r: # Check if the guess is lower than the random number
     print("Higher") # If guess is lower it will tell the user to guess higher
-  else:
-    print("Congragulations you got it") 
+  else: #guess matches the random number
+    print("Congragulations you got it") # congratulate the user and exit the loop
     
 if guess != r: #Checks if the user input is not equal to r
   #if guess are incorrect after 6 tries, it will display the correct answer
