@@ -2,7 +2,7 @@
   Author : Omer Khan
   Student Number : 753619
   Revison date : 15 April 2025
-  Program : Even or Odd
+  Program :is it a palindrome
   Description : A program that determines whether the word is a palindrome or not
 VARIABLE DICTIONARY
   ar(list) = a list of words that will be checked to see if they are palindromes
