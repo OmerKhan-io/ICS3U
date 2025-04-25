@@ -9,7 +9,7 @@ VARIABLE DICTIONARY
   word(string) = The current word being check in teh for loop
   letter_match(int) = Counts how many letters (from start and end) are matching
   letter_positon(int) = the index used to move from the beginning of the word to its centre
-  midway = the halfway point of the word. The point to stop checking for letters in a word
+  midway(int) = the halfway point of the word. The point to stop checking for letters in a word
 """
 print("Welcome to the Palindrome Program")
 ar = ["noon", "racecar", "civic", "madam", "desk", "kayak", "soccer", "level", "school", "radar"]
