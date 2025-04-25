@@ -36,25 +36,9 @@ for word in ar:
    
     print(word, "is a palindrome")
   else:
-    print(word, "is not a palindrome")
+    print(word, "is NOT a palindrome")
 print("Goodbye")
     
   
   
-  # 2
 
-print("Welcome to the Palindrome Program")
-ar = [ "noon", "racecar", "civic", "madam", "desk", "kayak", "soccer", "level", "school", "radar"]
-
-#Create loops that c=goes through each word
-for word in ar:
-  max_index = len(word) // 2
-  # This determines the halfway point of the word, as an integer
-  for i in range(max_index): #loop goes from index 0 to max_inedex -1
-  #i will be used to compare characters from the front and back of the word.
-    while word
-    if word[i] == word[len(word) - 1 - i]:
-      print("It's a Palindrome")
-    else: 
-      print("Not a Palindrome")
-  print( 
