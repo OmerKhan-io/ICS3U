@@ -1,9 +1,9 @@
 """
   Author : Omer Khan
   Student Number : 753619
-  Revison date : 15 April 2025
-  Program :is it a palindrome
-  Description : A program that determines whether the word is a palindrome or not
+  Revison date : 25 April 2025
+  Program : Palindrome Checker
+  Description : A program that determines whether the words in the given list is a palindrome or not
 VARIABLE DICTIONARY
   ar(list) = a list of words that will be checked to see if they are palindromes
   word(string) = The current word being check in teh for loop
