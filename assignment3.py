@@ -14,7 +14,7 @@ VARIABLE DICTIONARY
 print("Welcome to the Palindrome Program")
 ar = ["noon", "racecar", "civic", "madam", "desk", "kayak", "soccer", "level", "school", "radar"]
 
-#Create loops that c=goes through each word
+#Create loops that goes through each word
 for word in ar:
   letter_match = 0
   letter_position =  0
