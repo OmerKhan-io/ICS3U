@@ -15,7 +15,7 @@
 
 # Prediction F:
 #Will print number 0 to 5 with the word "Python" with a number and letter on  new line
-#The index
+#The character number --> the index
 
 
 progname = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas finibus."
