@@ -18,3 +18,18 @@ for j in range(3):
     sum += int(ar2[j][x])
   arr32.append(sum)
   print(arr32)
+#modifey
+
+ar2 = [[3, 4, 1, 2, 6],
+      [9, 2, 3, 7, 5],
+      [4, 2, 1, 0, 3]]
+
+add = 0
+ar32 = []
+
+for j in range (3): #Rows
+  for i in range(5): #Columns
+    add = add + ar2[j][i]
+  ar32.append(add)
+  add = 0
+print(ar32)
