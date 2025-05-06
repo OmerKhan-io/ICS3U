@@ -5,6 +5,16 @@ def add(a: float, b: float) -> float:
 sum = add(7.0, 2.0)
 print(sum) #this will print output as a float data type
 
+#Modify 1
+
+def add(a: float, b: float) -> float:
+   sum = a + b
+   return sum
+sum = add(7.0, 2.0)
+print(isinstance(sum, float)) #this will print output as a float data type
+#is isinstance is a boolean
+
+
 #Modify 2
 def a_abs (a):
   if a < 0:
@@ -13,4 +23,5 @@ def a_abs (a):
     return a*-1
     
 print(abs(-5.2))
+
 
