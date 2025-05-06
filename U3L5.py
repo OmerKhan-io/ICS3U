@@ -18,9 +18,9 @@ print(isinstance(sum, float)) #this will print output as a float data type
 #Modify 2
 def a_abs (a):
   if a < 0:
-    return a*-1
+    return -a
   else:
-    return a*-1
+    return a
     
 print(abs(-5.2))
 
