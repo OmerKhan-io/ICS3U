@@ -24,3 +24,14 @@ for i in sarr:
     date = year*10000 + mo*100 + day
 
 print(dateL, date)
+
+if user == "w":
+    word = input("Enter a word: ")
+    for i in sarr:
+        if word in i:
+            print(i)
+elif user == "d":
+    date = input("Enter a date in the format mm/dd/yyyy: ")
+    for i in sarr:
+        if date in i:
+            print(i)
