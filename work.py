@@ -35,3 +35,14 @@ elif user == "d":
     for i in sarr:
         if date in i:
             print(i)
+print(dateL, date)
+print("Welcome to the Wordle Database!")
+user = input("Enter w if you are looking for a word, or d for a word on a certain date: ")
+
+if user == "w":
+    uword = input("Enter a word: ")
+elif user == "d"
+    uyear = input("Enter a date")
+    umonth = input("Enter the month ( (3-letter abbreviation, as in 'Jan' for 'January'): ") ")
+    udate = input("Enter the day: ")a
+    print("The word entered on ")
