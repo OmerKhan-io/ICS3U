@@ -6,6 +6,7 @@ Revision date : May 17, 2025
 Program : Wordle Database Search
 Description : A program the searches for words and date entered by the users in the Wordle Database File 
     
+
 VARIABLE DICTIONARY :
   arr (list) =  stores each line of the file as an array list
   arr_date (list) = stores every line of the dates in the file as an array list
@@ -19,11 +20,13 @@ VARIABLE DICTIONARY :
   date (int) = temporary variable wehn looping through arr_date
   i (int) = Loop index variable for going through the arr list
   user_input_word (str) = the user input string for searching a word in the file 
+  word (str) = temporary varaible used when looping through the arr_word list
   user_input_date (int) = 	the user input integer date in YYYYMMDD format, used to find the corresponding word on that date
   user_choice (str) = User input to choose search mode: "w" for word search, "d" for date search
   w (str) = user input word for search 
-  user_year (int) = 	User input year for date search
-  user_month 
+  user_year (int) = User input year for date search
+  user_month (str) = stores the month input by the user when searching by date
+  user_day (str) = stores the day input by the user when searching by date 
 """
 
 #Creating an empty array to store each line of the file as values
