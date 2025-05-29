@@ -32,20 +32,24 @@ VARIABLE DICTIONARY :
 #Creating an empty array to store each line of the file as values
 arr = []
 #Creating an array that holds date in number format from the file
-arr_date = []
+arr_date = [] 
+#creates an array with all the words from the "wordle.date" file
 arr_word= []
+#Creates an array for all the months abbreviation
 arr_months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 try:
+    #Opens the file to read
     fh = open("wordle (1).dat", "r")
-    line = fh.readline().strip() #goes through each line of the file
-    while line != "":
-    #When an empty line is reached
+    #goes through each line of the file
+    line = fh.readline().strip() 
+    #Continues to read uptil an empty line is reached (EOF)
+    while line != "": #When an empty line is reached
         #This splits the line and gets rid of the white spaces
         arr.append(line.split(" "))
         # Reads the next line
         line = fh.readline().strip()      
-#Closes the file once its done reading it
+    # Closes the file once its done reading it
     fh.close()
 
 except OSError as err:
@@ -67,17 +71,19 @@ i = 0
 while i < len(arr): # This goes through as long as i is less than length of the array
   # Converts the date to int and appends to arr_date
   arr_date.append(merge_date(arr[i][0], arr[i][1], arr[i][2]))
-  # Appends the word (third item in the row)b
+  # Appends the word (third item in the row)
   arr_word.append(arr[i][3])
   i += 1 #adds one to the value of i
 
-#Creates a function that searches for a word. If the word is found in the file that date is returned
+#Creates a function that searches for a word. If the word is found in the file, then the date on which it occured is returned
 def word_match(user_input_word):
-  for word in arr_word: #cycles through every word in arr_word
+  # cycles through every word in arr_word
+  for word in arr_word: 
      # Checks if equal to uppercase version of the input 
     if word == user_input_word.upper():
+      #Returns the date on the same index on which the user_input_word in the arr_word occured 
       return arr_date[arr_word.index(user_input_word.upper())]
-  return 0 # If the word is not found, return 0
+  return 0 # If the word is not found i the arr_word, return 0
 
 def date_match(user_input_date):
     for date in arr_date: #cycles through every date in arr_date
