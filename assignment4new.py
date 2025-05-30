@@ -45,7 +45,7 @@ try:
     line = fh.readline().strip() 
     #Continues to read uptil an empty line is reached (EOF)
     while line != "": #When an empty line is reached
-        #This splits the line and gets rid of the white spaces
+        #This splits the line and gets rid of the white spaces and appends to arr
         arr.append(line.split(" "))
         # Reads the next line
         line = fh.readline().strip()      
@@ -104,6 +104,7 @@ if user_choice == "w":
    else: 
       #If the word is not found in the database
       print(w.upper()," was not found Wordle File")
+
 #In the case of user wanting to enter a date
 elif user_choice == "d":
    #The user enters the year of the date 
