@@ -88,6 +88,7 @@ def word_match(user_input_word):
 def date_match(user_input_date):
     for date in arr_date: #cycles through every date in arr_date
         if date == user_input_date:
+            # Return the word at the same index of input_date, and exit
             return arr_word[arr_date.index(user_input_date)]
 
 print("Welcome to the Wordle game!")
