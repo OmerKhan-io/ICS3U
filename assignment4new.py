@@ -35,9 +35,34 @@ arr = []
 arr_date = [] 
 #creates an array with all the words from the "wordle.date" file
 arr_word= []
-#Creates an array for all the months abbreviation
+#Creates an array ]for all the months abbreviation
 arr_months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
+#This defines the function which converts the dates to integer
+def merge_date(month,day,year):
+  # Turns year into YYYY0000
+  year = int(year) * 10000
+  # Turns month name to MM00
+  month = (arr_months.index(month)+1) * 100  
+  day = int(day)
+  # Now combines the year, month, and the day 
+  return year + month + day  
+
+#Creates a function that searches for a word. If the word is found in the file, then the date on which it occured is returned
+def word_match(user_input_word):
+  # cycles through every word in arr_word
+  for word in arr_word: 
+     # Checks if equal to uppercase version of the input 
+    if word == user_input_word.upper():
+      #Returns the date on the same index on which the user_input_word in the arr_word occured 
+      return arr_date[arr_word.index(user_input_word.upper())]
+  return 0 # If the word is not found i the arr_word, return 0
+
+def date_match(user_input_date):
+    for date in arr_date: #cycles through every date in arr_date
+        if date == user_input_date:
+            # Return the word at the same index of input_date, and exit
+            return arr_word[arr_date.index(user_input_date)]
 try:
     #Opens the file to read
     fh = open("wordle (1).dat", "r")
@@ -56,17 +81,7 @@ except OSError as err:
   # Handles file not found error and prints this message for error
   print("OSError: ", err)  
 
-#This defines the function which converts the dates to integer
-def merge_date(month,day,year):
-  # Turns year into YYYY0000
-  year = int(year) * 10000
-  # Turns month name to MM00
-  month = (arr_months.index(month)+1) * 100  
-  day = int(day)
-  # Now combines the year, month, and the day 
-  return year + month + day  
-
-i = 0
+i = 0 
 # Loops through each row in arr to fill arr_date and arr_word
 while i < len(arr): # This goes through as long as i is less than length of the array
   # Converts the date to int and appends to arr_date
@@ -75,24 +90,10 @@ while i < len(arr): # This goes through as long as i is less than length of the 
   arr_word.append(arr[i][3])
   i += 1 #adds one to the value of i
 
-#Creates a function that searches for a word. If the word is found in the file, then the date on which it occured is returned
-def word_match(user_input_word):
-  # cycles through every word in arr_word
-  for word in arr_word: 
-     # Checks if equal to uppercase version of the input 
-    if word == user_input_word.upper():
-      #Returns the date on the same index on which the user_input_word in the arr_word occured 
-      return arr_date[arr_word.index(user_input_word.upper())]
-  return 0 # If the word is not found i the arr_word, return 0
 
-def date_match(user_input_date):
-    for date in arr_date: #cycles through every date in arr_date
-        if date == user_input_date:
-            # Return the word at the same index of input_date, and exit
-            return arr_word[arr_date.index(user_input_date)]
 
-print("Welcome to the Wordle game!")
-user_choice = input("Enter w to find a word or enter d to find a word on a certain date: ")    
+print("Welcome to the Wordle game!") #Displays the greeting message
+user_choice = input("Enter w to find a word or enter d to find a word on a certain date: ")  #Asks the user to enter a letter for the game
 
 # If the user wants to find a word
 if user_choice == "w":  
@@ -104,7 +105,7 @@ if user_choice == "w":
       print("The word", w.upper(), "is the correct answer to the puzzle on", word_match(w) )
    else: 
       #If the word is not found in the database
-      print(w.upper()," was not found Wordle File")
+      print(w.upper()," was not found Wordle File") 
 
 #In the case of user wanting to enter a date
 elif user_choice == "d":
