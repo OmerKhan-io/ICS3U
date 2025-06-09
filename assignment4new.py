@@ -35,7 +35,7 @@ arr = []
 arr_date = [] 
 #creates an array with all the words from the "wordle.date" file
 arr_word= []
-#Creates an array ]for all the months abbreviation
+#Creates an array for all the months abbreviation
 arr_months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 #This defines the function which converts the dates to integer
@@ -56,11 +56,11 @@ def word_match(user_input_word):
     if word == user_input_word.upper():
       #Returns the date on the same index on which the user_input_word in the arr_word occured 
       return arr_date[arr_word.index(user_input_word.upper())]
-  return 0 # If the word is not found i the arr_word, return 0
+  return 0 # If the word is not found in the arr_word, return 0
 
 def date_match(user_input_date):
     for date in arr_date: #cycles through every date in arr_date
-        if date == user_input_date:
+        if date == user_input_date: #if the date entered by the user is matched by the date in the arr_date
             # Return the word at the same index of input_date, and exit
             return arr_word[arr_date.index(user_input_date)]
 try:
@@ -90,8 +90,6 @@ while i < len(arr): # This goes through as long as i is less than length of the 
   arr_word.append(arr[i][3])
   i += 1 #adds one to the value of i
 
-
-
 print("Welcome to the Wordle game!") #Displays the greeting message
 user_choice = input("Enter w to find a word or enter d to find a word on a certain date: ")  #Asks the user to enter a letter for the game
 
@@ -116,6 +114,7 @@ elif user_choice == "d":
    #The user enters the day of the date
    user_day = int(input("Enter the day: "))
    if 20210619 <= merge_date(user_month, user_day, user_year) <= 20240421:
+         # Displays date and its corresponding word  
       print("The word you entered on", merge_date(user_month, user_day, user_year), "was", date_match(merge_date(user_month, user_day, user_year)))
       # If date too early
    elif 20210619 > merge_date(user_month, user_day, user_year): 
