@@ -18,49 +18,38 @@ VARIABLE DICTIONARY :
     status_msg: str - Message to indicate expiry status
 """
 
-# Merge Sort Function to sort expiry dates and corresponding info
-def mergeSort(arr, arr2, arr3, arr4, left, right):
-    if left < right:
-        mid = left + (right - left) // 2  # Find midpoint to split array
-        mergeSort(arr, arr2, arr3, arr4, left, mid)        # Recursively sort left half
-        mergeSort(arr, arr2, arr3, arr4, mid + 1, right)   # Recursively sort right half
-        merge(arr, arr2, arr3, arr4, left, mid, right)     # Merge sorted halves
+def mergeSort(arr, arr2, arr3, arr4, l, r):
+    if l < r:
+        m = l + (r - l) // 2
+        mergeSort(arr, arr2, arr3, arr4, l, m)
+        mergeSort(arr, arr2, arr3, arr4, m + 1, r)
+        merge(arr, arr2, arr3, arr4, l, m, r)
 
-# Merge helper function merges two sorted subarrays into one
-def merge(arr, arr2, arr3, arr4, left, mid, right):
-    size1 = mid - left + 1  # Size of left subarray
-    size2 = right - mid     # Size of right subarray
-
-    # Create temporary lists to hold values for merging
-    L = [0] * size1
-    L2 = [0] * size1
-    L3 = [0] * size1
-    L4 = [0] * size1
-
-    R = [0] * size2
-    R2 = [0] * size2
-    R3 = [0] * size2
-    R4 = [0] * size2
-
-    # Copy data to left subarrays
-    for i in range(size1):
-        L[i] = arr[left + i]
-        L2[i] = arr2[left + i]
-        L3[i] = arr3[left + i]
-        L4[i] = arr4[left + i]
-
-    # Copy data to right subarrays
-    for j in range(size2):
-        R[j] = arr[mid + 1 + j]
-        R2[j] = arr2[mid + 1 + j]
-        R3[j] = arr3[mid + 1 + j]
-        R4[j] = arr4[mid + 1 + j]
-
-    i = j = 0  # Initial indexes for left and right subarrays
-    k = left   # Initial index for merged array
-
-    # Merge the temp arrays back into original arrays
-    while i < size1 and j < size2:
+def merge(arr, arr2, arr3, arr4, l, m, r):
+    n1 = m - l + 1
+    n2 = r - m
+    L = [0] * (n1)
+    L2 = [0] * (n1)
+    L3 = [0] * (n1)
+    L4 = [0] * (n1)
+    R = [0] * (n2)
+    R2 = [0] * (n2)
+    R3 = [0] * (n2)
+    R4 = [0] * (n2)
+    for i in range(0, n1):
+        L[i] = arr[l + i]
+        L2[i] = arr2[l + i]
+        L3[i] = arr3[l + i]
+        L4[i] = arr4[l + i]
+    for j in range(0, n2):
+        R[j] = arr[m + 1 + j]
+        R2[j] = arr2[m + 1 + j]
+        R3[j] = arr3[m + 1 + j]
+        R4[j] = arr4[m + 1 + j]
+    i = 0
+    j = 0
+    k = l
+    while i < n1 and j < n2:
         if L[i] <= R[j]:
             arr[k] = L[i]
             arr2[k] = L2[i]
@@ -74,18 +63,14 @@ def merge(arr, arr2, arr3, arr4, left, mid, right):
             arr4[k] = R4[j]
             j += 1
         k += 1
-
-    # Copy remaining elements of left subarrays, if any
-    while i < size1:
+    while i < n1:
         arr[k] = L[i]
         arr2[k] = L2[i]
         arr3[k] = L3[i]
         arr4[k] = L4[i]
         i += 1
         k += 1
-
-    # Copy remaining elements of right subarrays, if any
-    while j < size2:
+    while j < n2:
         arr[k] = R[j]
         arr2[k] = R2[j]
         arr3[k] = R3[j]
@@ -93,8 +78,9 @@ def merge(arr, arr2, arr3, arr4, left, mid, right):
         j += 1
         k += 1
 
+
 # Open the input data file
-data_file = "data.dat"
+data_file = "data (2).dat"
 file_reader = open(data_file, 'r')
 
 # Initialize lists for storing customer data
@@ -137,33 +123,23 @@ file_reader.close()
 mergeSort(exp_codes, customer_names, card_numbers, card_brands, 0, len(exp_codes) - 1)
 
 # Open the output file for writing the report
-report_filename = "output.txt"
-report_file = open(report_filename, "w")
+
 
 # Iterate through all expiry dates to check if they need output
 for i in range(len(exp_codes)):
     # Skip cards that expire June 2025 or later (no output needed)
-    if exp_codes[i] >= 202506:
-        continue
-
+    
     # Determine status message:
     # Expired if expiry before January 2025
-    if exp_codes[i] < 202501:
+    if exp_codes[i] < 202505:
         status_msg = "EXPIRED"
-    else:
-        # Near expiry cards between Jan and May 2025
+    elif exp_codes[i] == 202505 or exp_codes[i] == 202506:
         status_msg = "RENEW IMMEDIATELY"
+    elif exp_codes[i] > 202506:
+        continue
+
 
     # Print formatted info to console
     print("%-35s %-15s %-20s %-10s %-15s" % (
         customer_names[i] + ':', card_brands[i], '#' + card_numbers[i], exp_codes[i], status_msg))
 
-    # Write formatted info to output report file
-    report_file.write("%-35s %-15s %-20s %-10s %-15s\n" % (
-        customer_names[i] + ':', card_brands[i], '#' + card_numbers[i], exp_codes[i], status_msg))
-
-# Close the output report file after writing
-report_file.close()
-
-# Confirm output file location to user
-print("\nOutput sent to %s" % report_filename)
