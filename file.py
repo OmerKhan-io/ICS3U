@@ -25,9 +25,10 @@ def mergeSort(arr, arr2, arr3, arr4, l, r):
         merge(arr, arr2, arr3, arr4, l, m, r)
 
 def merge(arr, arr2, arr3, arr4, l, m, r):
-    n1 = m - l + 1
-    n2 = r - m
-    # Create temporary arrays for all four lists
+    n1 = m - l + 1  # Size of left subarray
+    n2 = r - m  # Size of right subarray
+
+    # Create temporary arrays for all input arrays
     L = [0] * (n1)
     L2 = [0] * (n1)
     L3 = [0] * (n1)
@@ -36,23 +37,26 @@ def merge(arr, arr2, arr3, arr4, l, m, r):
     R2 = [0] * (n2)
     R3 = [0] * (n2)
     R4 = [0] * (n2)
-    # Copy data into temporary left sub-arrays
+    # Copy data into temporary left arrays
     for i in range(0, n1):
         L[i] = arr[l + i]
         L2[i] = arr2[l + i]
         L3[i] = arr3[l + i]
         L4[i] = arr4[l + i]
-     # Copy data into temporary right sub-arrays   
+    # Copy data into temporary right arrays   
     for j in range(0, n2):
         R[j] = arr[m + 1 + j]
         R2[j] = arr2[m + 1 + j]
         R3[j] = arr3[m + 1 + j]
         R4[j] = arr4[m + 1 + j]
-    i = 0
-    j = 0
-    k = l
+
+    # Merge the temporary arrays back into the original arrays
+    i = 0  # Initial index of left array
+    j = 0  # Initial index of right array
+    k = l  # Initial index of merged array
+
     while i < n1 and j < n2:
-        if L[i] <= R[j]:
+        if L[i] <= R[j]: # Compares the expiry date
             arr[k] = L[i]
             arr2[k] = L2[i]
             arr3[k] = L3[i]
@@ -66,7 +70,7 @@ def merge(arr, arr2, arr3, arr4, l, m, r):
             j += 1
         k += 1
         
-    # Copy any remaining elements of the left sub-arrays
+    # Copy any remaining elements of the left side
     while i < n1:
         arr[k] = L[i]
         arr2[k] = L2[i]
@@ -75,7 +79,7 @@ def merge(arr, arr2, arr3, arr4, l, m, r):
         i += 1
         k += 1
         
-    # Copy any remaining elements of the right sub-arrays
+    # Copy any remaining elements of the right side
     while j < n2:
         arr[k] = R[j]
         arr2[k] = R2[j]
@@ -87,7 +91,6 @@ def merge(arr, arr2, arr3, arr4, l, m, r):
 
 # Open the input data file
 data_file = "data.dat"
-file_reader = open(data_file, 'r')
 
 # Initialize lists to store data fields from the file
 customer_names = []   # Full names of customers
@@ -95,36 +98,47 @@ card_numbers = []     # Credit card numbers
 card_brands = []      # Card types/brands (e.g., Visa, MasterCard)
 exp_codes = []        # Expiry codes as integers in YYYYMM format
 
-# Read all lines from the file
-content_lines = file_reader.readlines()
+try:
+    # Attempt to open file for reading
+    file_reader = open(data_file, 'r')
 
-# Remove the header line from data (assumed first line)
-header_line = content_lines.pop(0)
+    # Read all lines from the file
+    content_lines = file_reader.readlines()
 
-# Loop through each data line in the file
-for entry in content_lines:
-    # Split the line into separate fields using comma
-    first_name, last_name, brand, number, exp_month, exp_year = entry.strip().split(',')
+    # Remove the header line from data (assumed first line)
+    header_line = content_lines.pop(0)
 
-    # Combine first and last names and store it into full_name
-    full_name = first_name + ' ' + last_name
+    # Loop through each data line in the file
+    for entry in content_lines:
+        # Split the line into separate fields using comma
+        first_name, last_name, brand, number, exp_month, exp_year = entry.strip().split(',')
 
-    # Append customer data to respective lists
-    customer_names.append(full_name)
-    card_brands.append(brand)
-    card_numbers.append(number)
+        # Combine first and last names and store it into full_name
+        full_name = first_name + ' ' + last_name
 
-    # Ensure expiry month is always to 2 digits
-    if len(exp_month) == 1:
-        exp_month = '0' + exp_month
+        # Append customer data to respective lists
+        customer_names.append(full_name)
+        card_brands.append(brand)
+        card_numbers.append(number)
 
-    # Combine year and month to create integer YYYYMM expiry code
-    expiry_code = exp_year + exp_month
-    exp_codes.append(int(expiry_code))
+        # Ensure expiry month is always 2 digits
+        if len(exp_month) == 1:
+            exp_month = '0' + exp_month
 
-# Close the file after reading all the data 
-file_reader.close()
+        # Combine year and month to create integer YYYYMM expiry code
+        expiry_code = exp_year + exp_month
+        exp_codes.append(int(expiry_code))
 
+    # Close the file after reading all the data 
+    file_reader.close()
+
+except OSError:
+    # Handle file opening errors
+    print("OSError")  
+except EOFError:
+    # Handle end-of-file errors
+    print("EOFError")  
+    
 # Sort all lists by based on expiry code using merge sort (oldest to newest)
 mergeSort(exp_codes, customer_names, card_numbers, card_brands, 0, len(exp_codes) - 1)
 
